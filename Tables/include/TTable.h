@@ -42,7 +42,7 @@ public:
 	virtual void goNext() = 0;
 	virtual TRecord<TKey, TValue> getCurr() = 0;
 	virtual void Print() {
-		TRecord<TKey, TValue> tmp;
+		TRecord<TKey, TValue> tmp=getCurr();
 		for (Reset(); !isEnd(); goNext()) {
 			cout << tmp.key << " Val :" << tmp.value<<endl;
 		}

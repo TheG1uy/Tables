@@ -4,7 +4,7 @@
 
 
 template <class TKey, class TValue>
-class TArrayTable :public TTable<TKey, TValue> {
+class TArrayTable : public TTable<TKey, TValue> {
 protected:
 	TRecord <TKey, TValue> *arr;
 	int maxsize;
@@ -16,7 +16,9 @@ public:
 		curr = 0;
 	}
 	~TArrayTable() { delete[] arr; }
+	virtual bool isFull() const { return dataCount == maxsize; }
+	virtual TRecord<TKey, TValue> getCurr() { return arr[curr]; }
 	virtual void Reset() { curr = 0; }
-	virtual bool isEnd() { return curr == datacount; }
+	virtual bool isEnd() { return curr == dataCount; }
 	virtual void goNext() { curr++; }
 };
