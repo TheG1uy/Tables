@@ -5,6 +5,7 @@ template <class TKey, class TValue>
 struct TRecord {
 	TKey key;
 	TValue value;
+	int periodicity;
 };
 
 

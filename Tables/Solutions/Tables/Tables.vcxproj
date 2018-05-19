@@ -85,6 +85,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -113,10 +116,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\TArrayHash.h" />
     <ClInclude Include="..\..\include\TArrayTable.h" />
+    <ClInclude Include="..\..\include\THashTable.h" />
     <ClInclude Include="..\..\include\TScanTable.h" />
     <ClInclude Include="..\..\include\TSortTable.h" />
     <ClInclude Include="..\..\include\TTable.h" />
+    <ClInclude Include="..\..\include\TTreeTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\include\main.cpp" />

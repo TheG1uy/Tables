@@ -30,11 +30,12 @@ class TSortTable : public TArrayTable<TKey, TValue> {
 				arr[i] = arr[i - 1];
 				Eff++;
 			}
-			arr[curr] = record;
+			record.periodicity = 1;
+			arr[curr] = record;			
 			dataCount++;
 		}
 		else {
-
+			arr[curr].periodicity++;
 		}
 	}
 	virtual void Delete(TKey _key) {

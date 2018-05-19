@@ -23,9 +23,10 @@ public:
 			arr[curr] = record;
 			dataCount++;
 			Eff++;
+			arr[curr].periodicity = 1;
 		}
 		else {
-
+			arr[curr].periodicity++;
 		}
 	}
 	virtual void Delete(TKey _key) {

@@ -39,7 +39,9 @@ public:
 		if (!Find(_record.key)) {
 			*pRes = new TNode<TKey, TValue>();
 			(*pRes)->record = _record;
+			(*pRes)->record.periodicity = 1;
 		}
+		else (*pRes)->record.periodicity++;
 	}
 
 	void Delete(TKey _key) {

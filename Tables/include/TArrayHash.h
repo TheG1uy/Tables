@@ -59,7 +59,9 @@ public:
 		if (!Find(record.key)) {
 			arr[curr] = record;
 			dataCount++;
+			arr[curr].periodicity = 1;
 		}
+		else arr[curr].periodicity++;
 	}
 
 	void Reset() {
