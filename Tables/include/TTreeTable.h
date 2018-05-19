@@ -15,6 +15,7 @@ protected:
 	TNode<TKey, TValue> *pCurr;
 	TStack<TNode<TKey,TValue>*> stack;
 	TNode<TKey, TValue> **pRes;
+	int pos;
 
 public:
 	TTreeTable() {
@@ -65,18 +66,35 @@ public:
 	}
 
 	void Reset() {
+		stack.clear();
+		pos = 0;
+		pCurr = pRoot;
+		while (pCurr->pLeft != NULL) {
+			stack.push(pCurr);
+			pCurr = pCurr->pLeft;
+		}
 		
 	}
 	bool isEnd() {
-		return true;
+		return pos == dataCount;
 	}
 
 	void goNext() {
-
+		stack.pop();
+		pos++;
+		if (pCurr->pRight != NULL) {
+			pCurr = pCurr->pRight;
+			while (pCurr->pLeft != NULL) {
+				stack.push(pCurr);
+				pCurr = pCurr->pLeft;
+			}
+			stack.push(pCurr);
+		}
+		else if (!stack.isEmpty()) pCurr = stack.top();
 	}
 
 	bool isFull() const {
-		return true;
+		return false;
 	}
 
 	TRecord<TKey, TValue> getCurr() { return pCurr->record; }
