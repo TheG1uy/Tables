@@ -22,18 +22,25 @@ public:
 			if (isFull()) return;
 			arr[curr] = record;
 			dataCount++;
-			Eff++;
 			arr[curr].periodicity = 1;
 		}
 		else {
 			arr[curr].periodicity++;
 		}
 	}
+
+	virtual void clear() {
+		if (!dataCount) return;
+		delete[] arr;
+		arr = new TRecord<TKey, TValue>[maxSize];
+		dataCount = 0;
+		Eff = 0;
+	}
+
 	virtual void Delete(TKey _key) {
 
 		if (Find(_key)) {
 			arr[curr] = arr[--dataCount];
-			Eff++;
 		}
 	}
 };

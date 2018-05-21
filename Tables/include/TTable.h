@@ -34,6 +34,7 @@ public:
 	void incEff() {
 		Eff++;
 	}
+	void setEff(int _Eff) { Eff = _Eff; }
 	virtual bool isFull() const = 0;
 	virtual bool Find(TKey _key) = 0;
 	virtual void Insert(TRecord<TKey, TValue> record) = 0;
@@ -48,4 +49,5 @@ public:
 			cout << tmp.key << " Val :" << tmp.value<<endl;
 		}
 	}
+	virtual void clear() = 0;
 };

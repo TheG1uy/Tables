@@ -5,8 +5,9 @@
 
 template <class TKey, class TValue>
 class TSortTable : public TArrayTable<TKey, TValue> {
+public:
 	virtual bool Find(TKey _key) {
-		int left = 0, right = dataCount, middle;		
+		int left = 0, right = dataCount -1, middle;		
 		while(left <= right){
 			Eff++;
 			middle = (left + right) / 2;
@@ -47,11 +48,20 @@ class TSortTable : public TArrayTable<TKey, TValue> {
 			dataCount--;
 		}
 	}
+
+
+	virtual void clear() {
+		if (!dataCount) return;
+		delete[] arr;
+		arr = new TRecord<TKey, TValue>[maxSize];
+		dataCount = 0;
+		Eff = 0;
+	}
 	void QuickSort(int left, int right) {
 		int middle = (left + right) / 2;
 		TKey x = arr[middle].key;
 		TRecord<TKey, TValue> tmp;
-		int i = left, j = right;
+		int i = left, j = right - 1;
 
 		while (i <= j) {
 			while (arr[i].key < x) {

@@ -19,6 +19,13 @@ public:
 	}
 	~TArrayHash() { delete[] arr; }
 
+	virtual void clear() {
+		delete[] arr;
+		arr = new TRecord<TKey, TValue>[maxSize];
+		dataCount = 0;
+		Eff = 0;
+	}
+
 	bool isFull() const { return dataCount == maxSize; }
 
 	bool Find(TKey _key) {

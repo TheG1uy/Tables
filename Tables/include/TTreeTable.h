@@ -25,7 +25,7 @@ public:
 	bool Find(TKey _key) {
 		pRes = &pRoot;
 		while (*pRes != NULL) {
-			Eff;
+			Eff++;
 			if ((*pRes)->record.key == _key)
 				return true;
 			if ((*pRes)->record.key < _key)
@@ -40,9 +40,10 @@ public:
 			*pRes = new TNode<TKey, TValue>();
 			(*pRes)->record = _record;
 			(*pRes)->record.periodicity = 1;
+			dataCount++;
 		}
 		else (*pRes)->record.periodicity++;
-		dataCount++;
+
 	}
 
 	void Delete(TKey _key) {
@@ -58,6 +59,7 @@ public:
 			TNode<TKey, TValue> **iter;
 			iter = &(*pRes)->pLeft;
 			while (find->pRight) {
+				Eff++;
 				iter = &(*iter)->pRight;
 				find = find->pRight;
 			}
@@ -68,7 +70,18 @@ public:
 		dataCount--;
 		delete tmp;
 	}
-
+	virtual void clear() {
+		if (!dataCount) return;
+		TStack<TNode<TKey, TValue>*> st;
+		st.clear();
+		for (Reset(); !isEnd(); goNext())
+			st.push(pCurr);
+		while (!st.isEmpty())
+			delete st.pop();
+		dataCount = 0;
+		Eff = 0;
+		pCurr = pRoot = nullptr;
+	}
 	void Reset() {
 		stack.clear();
 		pos = 0;
