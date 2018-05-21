@@ -42,6 +42,7 @@ public:
 			(*pRes)->record.periodicity = 1;
 		}
 		else (*pRes)->record.periodicity++;
+		dataCount++;
 	}
 
 	void Delete(TKey _key) {
@@ -64,6 +65,7 @@ public:
 			tmp = find;
 			*iter = find->pLeft;
 		}
+		dataCount--;
 		delete tmp;
 	}
 
@@ -82,7 +84,6 @@ public:
 	}
 
 	void goNext() {
-		stack.pop();
 		pos++;
 		if (pCurr->pRight != NULL) {
 			pCurr = pCurr->pRight;
@@ -90,9 +91,8 @@ public:
 				stack.push(pCurr);
 				pCurr = pCurr->pLeft;
 			}
-			stack.push(pCurr);
 		}
-		else if (!stack.isEmpty()) pCurr = stack.top();
+		else if (!stack.isEmpty()) pCurr = stack.pop();
 	}
 
 	bool isFull() const {
