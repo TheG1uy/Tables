@@ -22,6 +22,8 @@ public:
 	virtual void clear() {
 		delete[] arr;
 		arr = new TRecord<TKey, TValue>[maxSize];
+		for (int i = 0; i < maxSize; i++)
+			arr[i].key = "";
 		dataCount = 0;
 		Eff = 0;
 	}
